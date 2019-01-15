@@ -80,13 +80,214 @@ for song in dic.keys():
     5. 좌석이 남아있다면 남은 좌석 중 좋은 좌석(앞 쪽)을 선택해 자동 예매한다.
 ```
 ```python
-# yes24 자동예매 프로그램
+# idHall과 idTime 가져오기
+
+import requests
+from bs4 import BeautifulSoup
+
+session = requests.session()
+
+loginUrl = "https://www.yes24.com/Templates/FTLogin.aspx"
+
+headers = {
+    "Referer": 'http://ticket.yes24.com/',
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+}
+
+login_info = {
+        'LoginType': '',
+        'FBLoginSub$ReturnURL': 'http://ticket.yes24.com/Pages/Perf/Detail/DetailSpecial.aspx' ,
+        'FBLoginSub$ReturnParams': 'IdPerf=32098' ,
+        'RefererUrl': '', 
+        'AutoLogin': '1' ,
+        'LoginIDSave': 'Y' ,
+        'FBLoginSub$NaverCode': '' ,
+        'FBLoginSub$NaverState': '' ,
+        'FBLoginSub$Facebook': '' ,
+        'SMemberID': '본인 아이디' ,
+        'SMemberPassword': '본인 비밀번호'
+}
+
+res = session.post(loginUrl, data=login_info, headers=headers)
+res.raise_for_status()
+
+
+#접근할 페이지 1
+res = session.get('http://ticket.yes24.com/Pages/Perf/Sale/PerfSaleProcess.aspx?IdPerf=32098')
+res.raise_for_status()
+
+soup1 = BeautifulSoup(res.text, "html.parser")
+
+
+date = soup1.select_one('#tk_day').text
+print(date)
+
+
+exit()
+
+
+#접근할 페이지 2
+
+page2_headers = { 'Referer': 'http://ticket.yes24.com/Pages/Perf/Sale/PerfSaleProcess.aspx?IdPerf=32098' ,
+"X-Requested-With" : "XMLHttpRequest",
+'Host': 'ticket.yes24.com',
+'Origin': 'http://ticket.yes24.com',
+'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
+
+
+# ToDo 공연마다 회차정보(날짜) 받아서 pDay에 넣기
+# ToDo 공연마다 회차정보(공연번호) 받아서 pIdPerf에 넣기
+page2_params = {
+    'pDay': '20190427',
+    'pIdPerf': '32098',
+    'pIdCode': '', 
+    'pIsMania': '0'
+}
+
+res2 =  session.post('http://ticket.yes24.com/Pages/Perf/Sale/Ajax/Perf/PerfTime.aspx',headers=page2_headers, data=page2_params)
+res2.raise_for_status()
+
+
+
+
+
+#idHall과 idTime 추출
+soup2 = BeautifulSoup(res2.text, "html.parser")
+
+idHall = soup2.select_one('ul#ulTimeData >li').attrs['idhall']
+idTime = soup2.select_one('ul#ulTimeData >li').attrs['value']
+saleclose = soup2.select_one('ul#ulTimeData >li').attrs['saleclose']
+
+print(idHall)
+print(idTime)
+print(saleclose)
+```
+```python
+# 좌석수 추출하는 것에 필요한 모듈
+
+def split_1(_seat):
+
+    seat_list = _seat.split('^')
+
+    real_seat_list = []
+
+    for i in seat_list :
+        sl = i.split('@')
+        real_seat_list.append(sl)
+
+    for j, k in enumerate(real_seat_list):
+        
+        if real_seat_list[j][0] == '' :
+            continue
+        else :
+            aa = real_seat_list[j][4] + ' ' + real_seat_list[j][2] + '원' + " " + real_seat_list[j][3] + '석'
+
+        print(aa)
+
+
+def split_2(_seat):
+
+    seat_list = _seat.split('^')
+
+    real_seat_list = []
+
+    for i in seat_list:
+        sl = i.split('@')
+        real_seat_list.append(sl)
+
+    for j, k in enumerate(real_seat_list):
+        
+        if real_seat_list[j][0] == '' :
+            continue
+        else :
+            aa = real_seat_list[j][0] + ' ' + real_seat_list[j][1] + '/' + real_seat_list[j][2] + '석'
+
+        print(aa)
+```
+```python
+# nct 콘서트로 실행해보기
+
+import requests
+from bs4 import BeautifulSoup
+import ticket_module as tm
+
+session = requests.session()
+
+
+
+#url = "http://ticket.yes24.com/OSIF/Book.asmx/GetHallMapRemain"
+url = "http://ticket.yes24.com/OSIF/Book.asmx/GetHallMapRemainFN"
+
+headers = {
+    "Referer": "http://ticket.yes24.com/OSIF/Book.asmx?op=GetHallMapRemainFN",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+}
+
+params = {
+    'idHall': '8531',
+    'idTime': '985109'
+}
+
+res = session.post(url, data=params, headers=headers)
+res.raise_for_status()
+
+soup = BeautifulSoup(res.text, "html.parser")
+
+seat_info = soup.find('regend').get_text()
+seat_info2 = soup.find('section').get_text()
+
+
+tm.split_1(seat_info)
+print("--------------")
+tm.split_2(seat_info2)
+```
+```python
+#  뮤지컬 지킬 앤 하이드로 실행해보기
+
+import requests
+from bs4 import BeautifulSoup
+import ticket_module as tm
+
+session = requests.session()
+
+
+
+url = "http://ticket.yes24.com/OSIF/Book.asmx/GetHallMapRemainFN"
+
+headers = {
+    "Referer": "http://ticket.yes24.com/OSIF/Book.asmx?op=GetHallMapRemainFN",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+}
+
+idHall = '8531'
+idTime = '971101'
+
+params = {
+    'idHall': idHall,
+    'idTime': idTime
+}
+
+res = session.post(url, data=params, headers=headers)
+res.raise_for_status()
+
+soup = BeautifulSoup(res.text, "html.parser")
+
+seat_info1 = soup.find('regend').get_text()
+seat_info2 = soup.find('section').get_text()
+
+
+tm.split_1(seat_info1)
+print("---------")
+tm.split_2(seat_info2)
+```
+```python
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-USER = "아이디"
-PASS = "비번"
+
+USER = "본인 아이디"
+PASS = "본인 비번"
 
 browser = webdriver.Chrome()
 browser.implicitly_wait(3)
@@ -123,96 +324,53 @@ sleep(1)
 res = browser.find_element_by_css_selector("div.fr img").click()
 
 #좌석 선택하기
+
 browser.switch_to.frame(browser.find_element_by_name("ifrmSeatFrame"))
+
+
 browser.find_element_by_id('t800012').click()
+
 browser.find_element_by_class_name('booking').click()
+
 print("좌석선택완료")
 
 browser.switch_to_default_content()
+
 print("다시원래창으로 돌아옴")
 
 browser.find_element_by_xpath('//*[@id="StepCtrlBtn03"]/a[2]/img').click()
-print("할인쿠폰 다음버튼")
-sleep(3)
 
+print("할인쿠폰 다음버튼")
+
+sleep(3)
 browser.find_element_by_xpath('//*[@id="StepCtrlBtn04"]/a[2]/img').click()
+
 browser.find_element_by_id('rdoPays22').click()
+
 browser.find_element_by_xpath('//*[@id="selBank"]/option[5]').click()
+
+
+
 browser.find_element_by_xpath('//*[@id="cbxCancelFeeAgree"]').click()
 browser.find_element_by_xpath('//*[@id="chkinfoAgree"]').click()
+
 pic = browser.save_screenshot("pic.png")
+
 browser.find_element_by_xpath('//*[@id="imgPayEnd"]').click()
-```
-```python
-# 외부 모듈
 
-def split_1(_seat):
-    seat_list = _seat.split('^')
-
-    real_seat_list = []
-
-    for i in seat_list :
-        sl = i.split('@')
-        real_seat_list.append(sl)
-
-    for j, k in enumerate(real_seat_list):
-        
-        if real_seat_list[j][0] == '' :
-            continue
-        else :
-            aa = real_seat_list[j][4] + ' ' + real_seat_list[j][2] + '원' + " " + real_seat_list[j][3] + '석'
-
-        print(aa)
+# for i in seat:
+#     a = i.text
+#     print(i)
 
 
-def split_2(_seat):
+# print(seat)
+# # for s in seat:
+# #     print("-", s.text)
 
-    seat_list = _seat.split('^')
 
-    real_seat_list = []
 
-    for i in seat_list:
-        sl = i.split('@')
-        real_seat_list.append(sl)
 
-    for j, k in enumerate(real_seat_list):
-    
-        if real_seat_list[j][0] == '' :
-            continue
-        else :
-            aa = real_seat_list[j][0] + ' ' + real_seat_list[j][1] + '/' + real_seat_list[j][2] + '석'
 
-        print(aa)
-```
-```python
-import requests
-from bs4 import BeautifulSoup
-import ticket_module as tm
-
-session = requests.session()
-
-#url = "http://ticket.yes24.com/OSIF/Book.asmx/GetHallMapRemain"
-url = "http://ticket.yes24.com/OSIF/Book.asmx/GetHallMapRemainFN"
-
-headers = {
-    "Referer": "http://ticket.yes24.com/OSIF/Book.asmx?op=GetHallMapRemainFN",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-}
-
-params = {
-    'idHall': '8529',
-    'idTime': '985069'
-}
-
-res = session.post(url, data=params, headers=headers)
-res.raise_for_status()
-
-soup = BeautifulSoup(res.text, "html.parser")
-
-seat_info = soup.find('regend').get_text()
-seat_info2 = soup.find('section').get_text()
-
-tm.split_1(seat_info)
-print("--------------")
-tm.split_2(seat_info2)
+# 브라우저 닫음
+# browser.close()
 ```
