@@ -78,5 +78,7 @@ create table BlogPost(
 	 blogger_id varchar(512),
      	 postdate varchar(31)
 );
+
+ALTER TABLE BlogPost ADD FOREIGN KEY (blogger_id) REFERENCES Blogger(id);
 ```
 # 문항2
