@@ -80,3 +80,4 @@ create table BlogPost(
      	 postdate varchar(31)
 );
 ```
+# 문항2
