@@ -1,4 +1,6 @@
 # 문항 1
+* Naver 검색 API를 이용하여 "파이썬"으로 검색된 네이버 블로그의 게시글 100개를 최신 작성순으로 수집하여,  
+데이터베이스(MySQL)에 블로거는 Blogger, 게시글은 BlogPost 테이블에 각각 저장하시오.
 ```python
 import requests, json, pymysql
 import re
@@ -81,7 +83,8 @@ create table BlogPost(
 
 ALTER TABLE BlogPost ADD FOREIGN KEY (blogger_id) REFERENCES Blogger(id);
 ```
-# 문항2
+# 문항2  
+* 아래 html 내용을 파싱하여, DB에 저장하는 insert문을 자동생성하는 코드를 작성하시오.
 ```python
 from bs4 import BeautifulSoup
 
