@@ -2,7 +2,6 @@
 ```python
 import requests, json, pymysql
 import re
-from bs4 import BeautifulSoup
 
 url = "https://openapi.naver.com/v1/search/blog.json"
 
