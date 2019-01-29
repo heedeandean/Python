@@ -70,13 +70,13 @@ with conn:
 create table Blogger(
 	 id varchar(512),
 	 bloggername varchar(512),
-     bloggerlink varchar(512)
+     	 bloggerlink varchar(512)
 );
 
 create table BlogPost(
 	 title varchar(512),
-     link varchar(512),
+     	 link varchar(512),
 	 blogger_id varchar(512),
-     postdate varchar(31)
+     	 postdate varchar(31)
 );
 ```
