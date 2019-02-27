@@ -1,5 +1,4 @@
 # 랜덤하게 100명의 키와 몸무게 만들기.
-
 import random
 
 name_list = list("가나다라마바사아자차카타파하")
