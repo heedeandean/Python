@@ -1,4 +1,7 @@
-import requests, json, re, pymysql
+import requests
+import json
+import re
+import pymysql
 from bs4 import BeautifulSoup
 import berry_utils as bu
 
@@ -16,56 +19,61 @@ albuminfolist = []
 singerList = []
 sslist = []
 
-def get_list (trs) :
-        
+
+def get_list(trs):
+
     for td in trs:
 
         # Top100 구성
         dataSongNo = td.attrs['data-song-no']
         rank = td.select('td:nth-of-type(2) > div > span.rank')[0].text
-        name = td.select('td:nth-of-type(6) > div > div > div.ellipsis.rank01 > span > a')[0].text
-        artists = td.select('td:nth-of-type(6) > div > div > div.ellipsis.rank02 > a')
+        name = td.select(
+            'td:nth-of-type(6) > div > div > div.ellipsis.rank01 > span > a')[0].text
+        artists = td.select(
+            'td:nth-of-type(6) > div > div > div.ellipsis.rank02 > a')
         artist = ", ".join([a.text for a in artists])
         likeCnt = bu.get_songLike(dataSongNo)
 
         href = td.select('td:nth-of-type(4) > div > a')[0].attrs['href']
         albumId = re.findall("\'(.*)\'", href)[0]
-        
-        top100 = (int(rank), dataSongNo, name , artist, likeCnt, albumId)
+
+        top100 = (int(rank), dataSongNo, name, artist, likeCnt, albumId)
         top100list.append(top100)
 
         # 노래 정보 구성
         songInfoDic = bu.get_songInfo(dataSongNo)
-       
+
         releaseDate = songInfoDic['releaseDate']
         album = songInfoDic['album']
-        genre = songInfoDic['genre'] 
+        genre = songInfoDic['genre']
 
-        songinfos = (releaseDate , dataSongNo, albumId, album, genre, likeCnt, name, artist)
+        songinfos = (releaseDate, dataSongNo, albumId,
+                     album, genre, likeCnt, name, artist)
         songinfolist.append(songinfos)
 
         # 앨범 정보 구성
-        albumInfoDic =  bu.get_albumInfo(albumId)
+        albumInfoDic = bu.get_albumInfo(albumId)
 
         albumlike = albumInfoDic['albumlike']
         agency = albumInfoDic['agency']
-        rate = albumInfoDic['rate'] 
+        rate = albumInfoDic['rate']
         albumtype = albumInfoDic['albumtype']
 
-        albuminfos = (releaseDate, agency, albumId, album, rate, albumlike, albumtype, artist)
+        albuminfos = (releaseDate, agency, albumId, album,
+                      rate, albumlike, albumtype, artist)
         albuminfolist.append(albuminfos)
-        
+
         # 가수, 매핑(노래-가수) 구성
-        for singer in artists :
+        for singer in artists:
             sid = singer.attrs["href"]
             sid = re.findall("\'(.*)\'", sid)[0]
-            
+
             al = (sid, singer.text)
             singerList.append(al)
 
             sl = (dataSongNo, name, singer.text, sid)
             sslist.append(sl)
-    
+
 
 get_list(trs1)
 get_list(trs2)
@@ -78,7 +86,7 @@ sslist = list(set(sslist))
 # mysql에 데이터 넣기.
 def get_mysql_conn(db):
     return pymysql.connect(
-        host= '34.85.124.225',
+        host='34.85.124.225',
         user='root',
         password='11',
         port=3306,
@@ -106,10 +114,10 @@ with conn:
 
     cur.executemany(sql_dupl_song, songinfolist)
     print("반영된 수", cur.rowcount)
-   
+
     cur.executemany(sql_dailyList, top100list)
     print("반영된 수", cur.rowcount)
-    
+
     cur.executemany(sql_dupl_singer, singerList)
     print("반영된 수", cur.rowcount)
 

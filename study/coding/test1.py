@@ -13,5 +13,3 @@ for i in list_a:
 
 print("최솟값 : ", min_num)
 print("최댓값 : ", max_num)
-
-

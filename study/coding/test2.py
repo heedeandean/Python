@@ -6,7 +6,7 @@ for i in range(10):
     print("".join(list_a))
 
     new_list = []
-    num = list_a[0] # 현재 숫자.
+    num = list_a[0]  # 현재 숫자.
     cnt = 0
 
     for i in list_a:
@@ -14,10 +14,10 @@ for i in range(10):
             cnt += 1
         else:
             new_list.append(num)
-            new_list.append(str(cnt))  
+            new_list.append(str(cnt))
             num = i
             cnt = 1
 
     new_list.append(i)
-    new_list.append(str(cnt))   
+    new_list.append(str(cnt))
     list_a = new_list

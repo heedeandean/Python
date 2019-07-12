@@ -9,7 +9,7 @@ with open("ran.txt", "w") as fp:
         weight = random.randrange(40, 100)
         height = random.randrange(140, 200)
         fp.write("{}, {}, {}\n".format(name, weight, height))
-        
+
 
 # 반복문으로 파일 읽기.
 with open("ran.txt", "r") as fp:
@@ -17,7 +17,7 @@ with open("ran.txt", "r") as fp:
         (name, weight, height) = line.strip().split(",")
         bmi = int(weight) or (int(height) * int(height))
         result = ""
-        
+
         if 25 <= bmi:
             result = "과체중"
         elif 18.5 <= bmi:
@@ -30,7 +30,6 @@ with open("ran.txt", "r") as fp:
             "몸무게 : {}",
             "키 : {}",
             "BMI : {}",
-            "결과 : {}" 
-            ]).format(name, weight, height, bmi, result))
+            "결과 : {}"
+        ]).format(name, weight, height, bmi, result))
         print()
-
