@@ -1,4 +1,11 @@
-if word_a[i] == word_b[j]:
-    cell[i][j] = cell[i-1][j-1] + 1
-else:
-    cell[i][j] = max(cell[i-1][j], cell[i][j-1])
+# map
+arr1 = [1, 2, 3, 4, 5]
+arr2 = list(map(lambda x: 2 * x, arr1))
+
+print(arr2)
+
+# reduce
+from functools import reduce
+
+arr3 = reduce(lambda x, y: x+y, arr1)
+print(arr3)
