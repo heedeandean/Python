@@ -1,6 +1,6 @@
-def sum(list):
+def cnt(list):
     if list == []:
         return 0
-    return list[0] + sum(list[1:])
+    return 1 + cnt(list[1:])
 
-print(sum([2, 8]))
+print(cnt([1,2,3,4,5,6,7,8,9]))
