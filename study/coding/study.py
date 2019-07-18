@@ -1,8 +1,14 @@
-def max(list):
-    if len(list) == 2:
-        return list[0] if list[0] > list[1] else list[1]
+voted = {}
 
-    next_max = max(list[1:])
-    return list[0] if list[0] > next_max else next_max
+def check_voter(name):
+    if voted.get(name):
+        print("돌려 보내세요!")
+    else:
+        voted[name] = True
+        print("투표하게 하세요!")
 
-print(max([1, 5, 8, 25, 100, 20]))
+check_voter("tom")
+check_voter("mike")
+check_voter("mike")
+print(voted)
+
