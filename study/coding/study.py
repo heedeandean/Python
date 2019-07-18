@@ -1,12 +1,14 @@
-def quicksort(array):
-    if len(array) < 2:
-        return array
-    else:
-        pivot = array[0]
-        less = [i for i in array[1:] if i <= pivot]
-        greater = [i for i in array[1:] if i > pivot]
+def print_items(list):
+    for item in list:
+        print(item)
+    
 
-        return quicksort(less) + [pivot] + quicksort(greater)
 
-print(quicksort([10, 5, 2, 3]))
+from time import sleep
 
+def print_items2(list):
+    for item in list:
+        sleep(1)
+        print(item)
+
+print_items([1, 2])
