@@ -1,4 +1,3 @@
-
 drop table if exists AlbumInfo;
 CREATE TABLE `AlbumInfo` (
   `album_id` int(11) NOT NULL,
@@ -60,20 +59,3 @@ CREATE TABLE `MappingSS` (
   CONSTRAINT `fk_singerid` FOREIGN KEY (`singer_id`) REFERENCES `Singer` (`singer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_songid` FOREIGN KEY (`song_id`) REFERENCES `SongInfo` (`song_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
