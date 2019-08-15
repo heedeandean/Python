@@ -9,6 +9,7 @@ def count_self(list):
         return 0
     return 1 + count_self(list[1:])
 
+
 def max_self(list):
     if len(list) == 2:
         return list[0] if list[0] > list[1] else list[1]
@@ -16,7 +17,7 @@ def max_self(list):
     return list[0] if list[0] > sub_max else sub_max
 
 
-list_self = [1, 2, 3]
+list_self = [5, 5, 10, 5]
 print(sum_self(list_self))
 print(count_self(list_self))
 print(max_self(list_self))
