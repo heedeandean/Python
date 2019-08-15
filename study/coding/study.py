@@ -1,11 +1,11 @@
-# map
-arr1 = [1, 2, 3, 4, 5]
-arr2 = list(map(lambda x: 2 * x, arr1))
+def quicksort(array):
+    if len(array) < 2:
+        return array
 
-print(arr2)
+    else:
+        pivot = array[0]
+        less = [i for i in array[1:] if i <= pivot]
+        greater = [i for i in array[1:] if i > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
 
-# reduce
-from functools import reduce
-
-arr3 = reduce(lambda x, y: x+y, arr1)
-print(arr3)
+print(quicksort([10, 5, 2, 3]))
