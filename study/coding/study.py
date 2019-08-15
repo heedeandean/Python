@@ -1,12 +1,22 @@
-def quicksort(array):
-    if len(array) < 2:
-        return array
+def sum_self(list):
+    if list == []:
+        return 0
+    return list[0] + sum_self(list[1:])
 
-    else:
-        pivot = array[0]
-        less = [i for i in array[1:] if i <= pivot]
-        greater = [i for i in array[1:] if i > pivot]
-        return quicksort(less) + [pivot] + quicksort(greater)
 
-print(quicksort([10, 5, 2, 3]))
-dsdf
+def count_self(list):
+    if list == []:
+        return 0
+    return 1 + count_self(list[1:])
+
+def max_self(list):
+    if len(list) == 2:
+        return list[0] if list[0] > list[1] else list[1]
+    sub_max = max_self(list[1:])
+    return list[0] if list[0] > sub_max else sub_max
+
+
+list_self = [1, 2, 3]
+print(sum_self(list_self))
+print(count_self(list_self))
+print(max_self(list_self))
