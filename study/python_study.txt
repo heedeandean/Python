@@ -31,3 +31,7 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 패키지(Package) : 모듈들을 포함하는 하나의 디렉토리(directory)
 
 ◆  PVM(Python Virtual Machine) : CPU에 의해 직접 실행되는 C, C++보다 느림
+
+◆ 파이썬의 내장함수(Built-in Functions)
+- 쉘에서 dir()함수 입력시 내장함수 확인 가능
+- 특별하게 선언하지 않고 어디서든 호출 가능

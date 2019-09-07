@@ -26,3 +26,29 @@ dir(...)
         recursively the attributes of its class's base classes.
 
 >>> 
+=================== RESTART: C:/haha/Python/test/ctest.py ===================
+>>> 
+=================== RESTART: C:/haha/Python/test/ctest.py ===================
+100
+a
+>>> 
+=================== RESTART: C:/haha/Python/test/ctest.py ===================
+100
+a
+>>> 
+=================== RESTART: C:/haha/Python/test/doit01.py ===================
+연습입니다
+>>> 100+100
+200
+>>> 100-100
+0
+>>> 
+>>> message='도전과제'
+>>> mess
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    mess
+NameError: name 'mess' is not defined
+>>> message
+'도전과제'
+>>> 
