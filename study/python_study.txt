@@ -105,17 +105,52 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 - 순서 O
 - 집합연산을 통해 자료를 추출하고 싶을때 사용
 
+◆ 제어문자(Escape sequence)
+- \t : tab
+
+◆ print(value, sep=' ', end='\n', file=sys.stdout, flush=False)
+매개 인자
+- sep : 디폴트로 연속적인 값을 하나의 공백으로 구분
+         또 다른 키워드 인수를 사용하여 다른 구분 문자열 지정
+- file : 대상 지정하여 출력 장치 변경할 수 있음
+- flush : 출력 버퍼 삭제 기능
+
+◆ 포맷팅
+- %d or %i : 10진수
+- %o : 8진수
+- %x or %X : 16진수
+- %e or %E : 소문자
+- %r : 문자열(repr()의 결과 값)
+- %s : 문자열(str()의 결과 값)
+- %% : %를 출력
+
+◆ 포맷터 정렬
+< : 왼쪽 정렬
+> : 오른쪽 정렬
+^ : 가운데 정렬
+
+◆ re 모듈
+- re.search() : 대상 문자열 전체 검색
+- re.match() : 대상 문자열의 시작부터 검색
+- re.sub(매칭할 패턴, 변경할 문자열, 검색 대상 문자열)
 
 
-★★★틀린문제 다시풀기!!★★★
-1. Strings는 자료를 관리하는 Sequence에 해당된다.(o, x)
+
+
+★★★★★틀린문제 다시풀기★★★★★
+s = "My mobile phone number is 010-123-4567"
+
+1. re.compile()함수를 이용해서 010-123-4567의 패턴을 매치한다.
+2. re.search()와 groups()를 이용해서 다음과 같이 출력되도록 한다.
+('010', '123', '4567')
 
 
 
+답
+1. 
+>>> import re
+>>>  p = re.compile('(\d{3})-(\d{3})-(\d{4})$')
 
-
-
-
-
-정답
-1. o : Strings 이외에 List, Tuple등이 있다.
+2.
+>>> t = re.search(p, s).groups()
+>>> t
