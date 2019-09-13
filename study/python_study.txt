@@ -1,5 +1,6 @@
 파이썬
 
+객체지향 언어(자바와는 다르게 클래스를 포함해서 사용하는 모든 것을 객체로 다룸)
 고급프로그래밍 언어
 인터프리터 언어
 동적 타이핑 대화형 언어 
@@ -10,6 +11,7 @@ coroutine[코루틴] 지원 > Subroutine[서브루틴]
 하지만 언젠가는 3.x버전으로 옮겨야 함
 
 4줄 들여쓰기 권장
+
 
 장점(+)
 1. 코드의 단순성과 표준성
@@ -146,12 +148,24 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 
 ◆ scoping rule 
 - LGB 규칙 
-변수 우선순위 Local(지역) > Global(전역) > Built-in(내장)
+변수 우선순위 : Local(지역) > Global(전역) > Built-in(내장)
 
+◆ 클래스
+- 모든 함수의 첫 인자가 self 키워드로 선언한다.
+- private : 관습적으로 더블 언더스코어(__)로 시작하는 이름은
+	  non-public으로 취급
+
+- 1. __init__ : 생성자(Constructor), 인스턴스가 만들어질 때 호출 (초기화(initialization)의 줄임말)
+	    매개인자O
+  2. __del__ : 소멸자(Destructor), 인스턴스가 사라질 때 호출 
+	    매개인자X
+	    (ex. 오픈된 작업파일의 클로즈, 데이터베이스 연결 종료) 
+	    
 
 
 
 ★★★★★틀린문제 다시풀기★★★★★
+[1]
 s = "My mobile phone number is 010-123-4567"
 
 1. re.compile()함수를 이용해서 010-123-4567의 패턴을 매치한다.
@@ -159,8 +173,13 @@ s = "My mobile phone number is 010-123-4567"
 ('010', '123', '4567')
 
 
+[2]
+클래스의 내장함수란 파이썬에서 모든 클래스 안에서 사용할 수 있는 특별한 메소드를 말한다(O, X)
+
+
 
 답
+[1]
 1. 
 >>> import re
 >>>  c = re.compile('(\d{3})-(\d{3})-(\d{4})$')
@@ -168,3 +187,6 @@ s = "My mobile phone number is 010-123-4567"
 2.
 >>> r = re.search(c, s).groups()
 >>> r
+
+[2] O
+
