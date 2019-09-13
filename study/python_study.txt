@@ -9,6 +9,8 @@ coroutine[코루틴] 지원 > Subroutine[서브루틴]
 현재 2/3버전 대로 나누어서 개발 중 (Why? 호환이 안되서)
 하지만 언젠가는 3.x버전으로 옮겨야 함
 
+4줄 들여쓰기 권장
+
 장점(+)
 1. 코드의 단순성과 표준성
 2. 이식성
@@ -134,6 +136,18 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 - re.match() : 대상 문자열의 시작부터 검색
 - re.sub(매칭할 패턴, 변경할 문자열, 검색 대상 문자열)
 
+◆ if~: elif~: else:
+
+◆ range(시작값, 종료값, 증감분)
+
+◆ 파라미터 : (a, *tuple, **dic) -> 순서 지켜야 함
+
+◆ lambda : 익명함수(이름이 없는 함수)
+
+◆ scoping rule 
+- LGB 규칙 
+변수 우선순위 Local(지역) > Global(전역) > Built-in(내장)
+
 
 
 
@@ -149,8 +163,8 @@ s = "My mobile phone number is 010-123-4567"
 답
 1. 
 >>> import re
->>>  p = re.compile('(\d{3})-(\d{3})-(\d{4})$')
+>>>  c = re.compile('(\d{3})-(\d{3})-(\d{4})$')
 
 2.
->>> t = re.search(p, s).groups()
->>> t
+>>> r = re.search(c, s).groups()
+>>> r
