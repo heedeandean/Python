@@ -160,6 +160,13 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
   2. __del__ : 소멸자(Destructor), 인스턴스가 사라질 때 호출 
 	    매개인자X
 	    (ex. 오픈된 작업파일의 클로즈, 데이터베이스 연결 종료) 
+
+◆ Overriding(오버라이딩) : 메소드 재정의
+
+◆ 상속(Inheritance) : 자식 클래스는 부모 클래스로부터 멤버변수와 메소드를 상속 받지만,
+		   생성자는 상속 받을 수 없다. 
+
+◆ 파이썬에서 "다중상속"받을 때 부모들이 같은 메소드를 가지고 있을 때 먼저 정의된 쪽 호출
 	    
 
 
@@ -174,7 +181,26 @@ s = "My mobile phone number is 010-123-4567"
 
 
 [2]
-클래스의 내장함수란 파이썬에서 모든 클래스 안에서 사용할 수 있는 특별한 메소드를 말한다(O, X)
+class Doit:
+    def __init__(self, temp = 0):
+        self._temp = temp
+    
+    def to_value(self):
+        return (self.temp * 1.8) + 32
+
+    1.?
+    def temp(self):
+        return 2. ?
+
+    3.?
+    def temp(self, value):
+        4. ?
+
+v = Doit()
+
+for i in range(10, 15):
+    v.temp = i
+    print(str(v.to_value()))
 
 
 
@@ -188,5 +214,8 @@ s = "My mobile phone number is 010-123-4567"
 >>> r = re.search(c, s).groups()
 >>> r
 
-[2] O
-
+[2]
+1. @property 
+2. self._temp
+3. @temp.setter
+4. self._temp = value
