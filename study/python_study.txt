@@ -168,19 +168,13 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 
 ◆ 파이썬에서 "다중상속"받을 때 부모들이 같은 메소드를 가지고 있을 때 먼저 정의된 쪽 호출
 	    
-
+◆ 수학 함수 모듈
+1. Math 모듈 
+- abs(x) : x의 절댓값
 
 
 ★★★★★틀린문제 다시풀기★★★★★
 [1]
-s = "My mobile phone number is 010-123-4567"
-
-1. re.compile()함수를 이용해서 010-123-4567의 패턴을 매치한다.
-2. re.search()와 groups()를 이용해서 다음과 같이 출력되도록 한다.
-('010', '123', '4567')
-
-
-[2]
 class Doit:
     def __init__(self, temp = 0):
         self._temp = temp
@@ -202,20 +196,31 @@ for i in range(10, 15):
     v.temp = i
     print(str(v.to_value()))
 
+[2]
+1. 오늘 날짜와 시간을 출력한다.
+2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
+3. 2019년 12월 25일은 무슨 요일인지 출력한다.
+
+
+
+
 
 
 답
+
 [1]
-1. 
->>> import re
->>>  c = re.compile('(\d{3})-(\d{3})-(\d{4})$')
-
-2.
->>> r = re.search(c, s).groups()
->>> r
-
-[2]
 1. @property 
 2. self._temp
 3. @temp.setter
 4. self._temp = value
+
+[2]
+import datetime
+
+1. today = datetime.datetime.today()
+print(today)
+2. afterday = today + datetime.timedelta(days=100)
+print(afterday.strftime("%Y/%m/%d"))
+3. week = ['월', '화', '수', '목', '금', '토', '일']
+whatday = datetime.datetime(2019,12,25).weekday()
+print(week[whatday] + "요일")
