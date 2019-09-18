@@ -172,6 +172,8 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 1. Math 모듈 
 - abs(x) : x의 절댓값
 
+◆ Raise : 원하는 에러를 강제로 발생 시킴
+
 
 ★★★★★틀린문제 다시풀기★★★★★
 [1]
@@ -201,6 +203,9 @@ for i in range(10, 15):
 2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
 3. 2019년 12월 25일은 무슨 요일인지 출력한다.
 
+[3] (num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
+그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
+
 
 
 
@@ -224,3 +229,17 @@ print(afterday.strftime("%Y/%m/%d"))
 3. week = ['월', '화', '수', '목', '금', '토', '일']
 whatday = datetime.datetime(2019,12,25).weekday()
 print(week[whatday] + "요일")
+
+[3]
+class MyException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+try:
+    num1, num2 = eval(input("input num1, num2 : "))
+    if num2 == 0:
+        raise MyException("0으로 나누려 했음")
+    result = num1 / num2
+    print("Result is", result)
+except MyException as e:
+    print(e.message)
