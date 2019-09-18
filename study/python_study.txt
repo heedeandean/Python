@@ -177,33 +177,11 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 
 ★★★★★틀린문제 다시풀기★★★★★
 [1]
-class Doit:
-    def __init__(self, temp = 0):
-        self._temp = temp
-    
-    def to_value(self):
-        return (self.temp * 1.8) + 32
-
-    1.?
-    def temp(self):
-        return 2. ?
-
-    3.?
-    def temp(self, value):
-        4. ?
-
-v = Doit()
-
-for i in range(10, 15):
-    v.temp = i
-    print(str(v.to_value()))
-
-[2]
 1. 오늘 날짜와 시간을 출력한다.
 2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
-3. 2019년 12월 25일은 무슨 요일인지 출력한다.
 
-[3] (num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
+
+[2] (num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
 그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
 
 
@@ -212,25 +190,15 @@ for i in range(10, 15):
 
 
 답
-
 [1]
-1. @property 
-2. self._temp
-3. @temp.setter
-4. self._temp = value
-
-[2]
 import datetime
 
 1. today = datetime.datetime.today()
 print(today)
 2. afterday = today + datetime.timedelta(days=100)
 print(afterday.strftime("%Y/%m/%d"))
-3. week = ['월', '화', '수', '목', '금', '토', '일']
-whatday = datetime.datetime(2019,12,25).weekday()
-print(week[whatday] + "요일")
 
-[3]
+[2]
 class MyException(Exception):
     def __init__(self, message):
         self.message = message
