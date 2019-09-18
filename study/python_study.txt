@@ -172,7 +172,12 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 1. Math 모듈 
 - abs(x) : x의 절댓값
 
-◆ Raise : 원하는 에러를 강제로 발생 시킴
+◆ Exception(예외)
+- 사용자 Exception
+	1) Exception class를 상속(extending)받아야 한다.
+	2) 상속을 받아 구현한 사용자 정의 Exception은 Raise를 이용하여 객체를 호출한다.
+	   * Raise : 원하는 에러를 강제로 발생 시킴
+- NameError : 클래스명, 변수명, 모듈명 등을 잘못 기재했을 때 발생하는 예외 
 
 
 ★★★★★틀린문제 다시풀기★★★★★
@@ -181,10 +186,13 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
 
 
-[2] (num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
+[2] 
+(num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
 그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
 
 
+[3]
+"a"를 출력하려고 prinit("a)라는 구문을 실행할 경우 발생하는 예외는 NameError이다.
 
 
 
@@ -211,3 +219,5 @@ try:
     print("Result is", result)
 except MyException as e:
     print(e.message)
+
+[3] O 
