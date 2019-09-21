@@ -250,6 +250,9 @@ accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
 바나나 : 15000
 
 
+[6] CSV 모듈 클래스 중 DictReader 클래스는 CSV파일을 키값과 밸류로 읽어들이는 클래스이다.
+
+
 
 
 
@@ -317,5 +320,8 @@ with open('fruit.csv', 'r') as f:
             continue
         sum = int(row[1])+int(row[2])+int(row[3])
         print("%s : %d" % (row[0], sum))
+
+
+[6] O
 
 
