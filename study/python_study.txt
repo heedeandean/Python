@@ -184,8 +184,22 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 - dump() : 데이터 저장
 - load() : 읽어오기
 
+◆  웹 서비스(Web Service)
+   ◇ XML [extensible markup language] : 문서 형식, 모두 String, Tree구조
+      - HTML과 매우 유사하지만, XML이 좀더 구조화됨
+      - 파싱 방법
+    	가. SAX(Simple API for XML) : Tree 만들 때 사용
+    	나. DOM(Document Object Model) : Tree 만든 후 사용
 
-
+   ◇ JSON [JavaScript Object Notation] : 딕셔너리, 리스트
+      - XML의 자료가 클 경우 사용
+      - 특징
+	가. 프로그래밍 언어 & 플랫폼에 독립적이므로,
+	    서로 다른 시스템간에 객체를 교환함
+	나. JavaScript문법을 사용
+	나. XML보다 가볍고 빠름
+	라. 통신 프로토콜을 실행함
+	
 
 
 ★★★★★틀린문제 다시풀기★★★★★
