@@ -179,6 +179,14 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 	   * Raise : 원하는 에러를 강제로 발생 시킴
 - NameError : 클래스명, 변수명, 모듈명 등을 잘못 기재했을 때 발생하는 예외 
 
+◆ Pickle : 객체를 파일에 저장(객체의 상태를 그대로 저장)
+- 단점(-) : 용량 큼, 속도 느림
+- dump() : 데이터 저장
+- load() : 읽어오기
+
+
+
+
 
 ★★★★★틀린문제 다시풀기★★★★★
 [1]
@@ -191,8 +199,10 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
 
 
-[3]
-"a"를 출력하려고 prinit("a)라는 구문을 실행할 경우 발생하는 예외는 NameError이다.
+
+
+
+
 
 
 
@@ -220,4 +230,3 @@ try:
 except MyException as e:
     print(e.message)
 
-[3] O 
