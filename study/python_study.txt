@@ -199,7 +199,20 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 	나. JavaScript문법을 사용
 	나. XML보다 가볍고 빠름
 	라. 통신 프로토콜을 실행함
+
+◆ SQLite3
+- SQLite3 자료형 VS 파이썬 자료형
+      NULL	      None
+      INTEGER	      int
+      REAL	      float
+      TEXT	      str, bytes
+      BLOB	      buffer
 	
+
+
+
+
+
 
 
 ★★★★★틀린문제 다시풀기★★★★★
@@ -208,11 +221,33 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
 
 
-[2] 
+[2] test4.py에 작성
 (num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
 그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
 
 
+[3]
+https://www.python.org/search 파이썬 사이트에서 
+response라고 검색했을 때의 웹페이지를 출력하는 파이썬 코드를 작성하시오.
+
+
+[4]
+accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
+
+
+[5]
+1. fruit.csv로 공백으로 구분하여 데이터를 저장한다.
+2. fruit.csv를 읽어들인다.
+3. 3일동안 판매한 과일별 합계를 출력결과와 같이 출력한다
+
+"사과", 3000, 3000, 5000
+"오렌지", 7000, 2000, 1000
+"바나나", 2000, 6000, 7000
+
+[출력결과]
+사과 : 11000
+오렌지 : 10000
+바나나 : 15000
 
 
 
@@ -230,6 +265,7 @@ print(today)
 2. afterday = today + datetime.timedelta(days=100)
 print(afterday.strftime("%Y/%m/%d"))
 
+
 [2]
 class MyException(Exception):
     def __init__(self, message):
@@ -243,4 +279,43 @@ try:
     print("Result is", result)
 except MyException as e:
     print(e.message)
+
+
+[3]
+import urllib.request
+
+url = 'https://www.python.org/search'
+values = {'q':'response'}
+data = urllib.parse.urlencode(values).encode('utf-8')
+req = urllib.request.urlopen(url, data)
+str = req.read()
+print(str)
+
+
+[4] O
+
+
+[5]
+import csv
+
+if __name__ == "__main__":
+    csv_file = open('fruit.csv', 'w')
+
+    cw = csv.writer(csv_file, delimiter=',', quotechar='|')
+
+    rows = [["사과", 3000, 3000, 5000], [
+        "오렌지", 700, 2000, 1000], ["바나나", 2000, 6000, 7000]]
+
+    cw.writerows(rows)
+    csv_file.close()
+
+with open('fruit.csv', 'r') as f:
+    reader = csv.reader(f, quotechar='|')
+
+    for row in reader:
+        if ','.join(row).strip() == '':
+            continue
+        sum = int(row[1])+int(row[2])+int(row[3])
+        print("%s : %d" % (row[0], sum))
+
 
