@@ -217,14 +217,6 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 
 
 ★★★★★틀린문제 다시풀기★★★★★
-[1]
-1. 오늘 날짜와 시간을 출력한다.
-2. 오늘부터 100일 후의 날짜를 년도/월/일로 출력한다.
-
-
-[2] test4.py에 작성
-(num1/num2)의 결과를 구할 때 num2가 0이 아닌 정수만 입력 받고, 
-그렇지 않으면 Exception을 처리하는 사용자 MyException을 만들어 보세요. 
 
 
 [3]
@@ -261,28 +253,8 @@ accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
 
 
 답
-[1]
-import datetime
-
-1. today = datetime.datetime.today()
-print(today)
-2. afterday = today + datetime.timedelta(days=100)
-print(afterday.strftime("%Y/%m/%d"))
 
 
-[2]
-class MyException(Exception):
-    def __init__(self, message):
-        self.message = message
-
-try:
-    num1, num2 = eval(input("input num1, num2 : "))
-    if num2 == 0:
-        raise MyException("0으로 나누려 했음")
-    result = num1 / num2
-    print("Result is", result)
-except MyException as e:
-    print(e.message)
 
 
 [3]
