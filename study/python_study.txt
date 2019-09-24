@@ -208,8 +208,9 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
       TEXT	      str, bytes
       BLOB	      buffer
 	
-
-
+◆ Tkinter : 파이썬의 GUI(Graphical User Interface) 툴킷
+- checkbutton : 다중 선택
+   radiobutton : 단일 선택
 
 
 
