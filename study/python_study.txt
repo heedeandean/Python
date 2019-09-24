@@ -218,17 +218,12 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에
 
 ★★★★★틀린문제 다시풀기★★★★★
 
-
-[3]
+[1] (test5.py에 작성)
 https://www.python.org/search 파이썬 사이트에서 
 response라고 검색했을 때의 웹페이지를 출력하는 파이썬 코드를 작성하시오.
 
 
-[4]
-accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
-
-
-[5]
+[2] (test6.py에 작성)
 1. fruit.csv로 공백으로 구분하여 데이터를 저장한다.
 2. fruit.csv를 읽어들인다.
 3. 3일동안 판매한 과일별 합계를 출력결과와 같이 출력한다
@@ -243,7 +238,7 @@ accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
 바나나 : 15000
 
 
-[6] CSV 모듈 클래스 중 DictReader 클래스는 CSV파일을 키값과 밸류로 읽어들이는 클래스이다.
+[3] CSV 모듈 클래스 중 DictReader 클래스는 CSV파일을 키값과 밸류로 읽어들이는 클래스이다.
 
 
 
@@ -254,10 +249,7 @@ accept()는 클라이언트의 연결을 기다렸다가 수동적으로 받아들이는 메소드이다.
 
 답
 
-
-
-
-[3]
+[1]
 import urllib.request
 
 url = 'https://www.python.org/search'
@@ -268,10 +260,7 @@ str = req.read()
 print(str)
 
 
-[4] O
-
-
-[5]
+[2]
 import csv
 
 if __name__ == "__main__":
@@ -280,7 +269,7 @@ if __name__ == "__main__":
     cw = csv.writer(csv_file, delimiter=',', quotechar='|')
 
     rows = [["사과", 3000, 3000, 5000], [
-        "오렌지", 700, 2000, 1000], ["바나나", 2000, 6000, 7000]]
+        "오렌지", 7000, 2000, 1000], ["바나나", 2000, 6000, 7000]]
 
     cw.writerows(rows)
     csv_file.close()
@@ -295,6 +284,6 @@ with open('fruit.csv', 'r') as f:
         print("%s : %d" % (row[0], sum))
 
 
-[6] O
+[3] O
 
 
