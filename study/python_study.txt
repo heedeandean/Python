@@ -223,19 +223,6 @@ https://www.python.org/search 파이썬 사이트에서
 response라고 검색했을 때의 웹페이지를 출력하는 파이썬 코드를 작성하시오.
 
 
-[2] (test6.py에 작성)
-1. fruit.csv로 공백으로 구분하여 데이터를 저장한다.
-2. fruit.csv를 읽어들인다.
-3. 3일동안 판매한 과일별 합계를 출력결과와 같이 출력한다
-
-"사과", 3000, 3000, 5000
-"오렌지", 7000, 2000, 1000
-"바나나", 2000, 6000, 7000
-
-[출력결과]
-사과 : 11000
-오렌지 : 10000
-바나나 : 15000
 
 
 [3] CSV 모듈 클래스 중 DictReader 클래스는 CSV파일을 키값과 밸류로 읽어들이는 클래스이다.
@@ -260,28 +247,6 @@ str = req.read()
 print(str)
 
 
-[2]
-import csv
-
-if __name__ == "__main__":
-    csv_file = open('fruit.csv', 'w')
-
-    cw = csv.writer(csv_file, delimiter=',', quotechar='|')
-
-    rows = [["사과", 3000, 3000, 5000], [
-        "오렌지", 7000, 2000, 1000], ["바나나", 2000, 6000, 7000]]
-
-    cw.writerows(rows)
-    csv_file.close()
-
-with open('fruit.csv', 'r') as f:
-    reader = csv.reader(f, quotechar='|')
-
-    for row in reader:
-        if ','.join(row).strip() == '':
-            continue
-        sum = int(row[1])+int(row[2])+int(row[3])
-        print("%s : %d" % (row[0], sum))
 
 
 [3] O
