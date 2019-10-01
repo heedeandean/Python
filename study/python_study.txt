@@ -35,6 +35,7 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동
 패키지(Package) : 모듈들을 포함하는 하나의 디렉토리(directory)
 
 ◆  PVM(Python Virtual Machine) : CPU에 의해 직접 실행되는 C, C++보다 느림
+(cf. 자이썬 : 자바 가상 머신용 인터프리터, 과거에는 JPython이라고 불림)
 
 ◆ 함수 : 여러 개의 실행 문을 하나로 묶은 모듈, 특정한 명령을 수행하는 하나의 독립된 프로그램
 
@@ -121,6 +122,9 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동
          또 다른 키워드 인수를 사용하여 다른 구분 문자열 지정
 - file : 대상 지정하여 출력 장치 변경할 수 있음
 - flush : 출력 버퍼 삭제 기능
+
+◆ foramt() : 문자열 format()형식, 
+	      ()안에는 포맷터에 맵핑된 값들을 나열하거나, 키와 값을 지정해서 호출 가능
 
 ◆ 포맷팅
 - %d or %i : 10진수
@@ -217,8 +221,6 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동
 ◆ Tkinter : 파이썬의 GUI(Graphical User Interface) 툴킷
 - checkbutton : 다중 선택
   radiobutton : 단일 선택
-   
-◆ 자이썬 : 자바 가상 머신용 인터프리터, 과거에는 JPython이라고 불림
 
 ◆ Regular Expressions(정규식) 
 	1. 주어진 패턴으로 문자열의 검색 및 치환
@@ -235,9 +237,6 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동
 ◆ continue : 임의 반복문의 다음번 루프 내용을 실행하는 명령문
 
 ◆ 소켓 : 응용 프로그램에서 TCP/IP를 이용하는 창구 역할
-
-◆ foramt() : 문자열 format()형식, 
-	      ()안에는 포맷터에 맵핑된 값들을 나열하거나, 키와 값을 지정해서 호출 가능
 	    
 ◆ 다형성 : 하나의 인터페이스를 이용하여 선조의 선언된 추상 메소드를 "재정의"하여 구현
 
