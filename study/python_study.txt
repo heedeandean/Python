@@ -23,7 +23,7 @@ coroutine[코루틴] 지원 > Subroutine[서브루틴]
 
 단점(-)
 GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동시에 
-			오직 하나의 스레드만 동작하도록 허용함으로써 생기는 문제 
+			       오직 하나의 스레드만 동작하도록 허용함으로써 생기는 문제 
 - 다중 스레드(Multi-Thread)의 성능이 떨어짐
   그래서 다중 프로세스(Multi-Process) 사용 권장
   다중 프로세싱 패키지를 제공해 스레드 이용하는 것과 비슷하게 구현하도록 지원중
