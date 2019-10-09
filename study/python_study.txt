@@ -1,4 +1,4 @@
-[[파이썬]]
+﻿[[파이썬]]
 
 객체지향 언어(자바와는 다르게 클래스를 포함해서 사용하는 모든 것을 객체로 다룸)
 고급프로그래밍 언어
@@ -239,49 +239,3 @@ GIL(Global Interpreter Lock) : CPython(C로 구현)의 인터프리터에서 동
 ◆ 소켓 : 응용 프로그램에서 TCP/IP를 이용하는 창구 역할
 	    
 ◆ 다형성 : 하나의 인터페이스를 이용하여 선조의 선언된 추상 메소드를 "재정의"하여 구현
-
-
-
-
-
-★★★★★틀린문제 다시풀기★★★★★
-
-[1] (test5.py에 작성)
-https://www.python.org/search 파이썬 사이트에서 
-response라고 검색했을 때의 웹페이지를 출력하는 파이썬 코드를 작성하시오.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-답
-
-[1]
-import urllib.request
-
-url = 'https://www.python.org/search'
-values = {'q':'response'}
-data = urllib.parse.urlencode(values).encode('utf-8')
-req = urllib.request.urlopen(url, data)
-str = req.read()
-print(str)
-
-
-
-
-
-
-
