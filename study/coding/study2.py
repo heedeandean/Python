@@ -1,16 +1,7 @@
-def greet2(name):
-    print("어떻게 지내? " + name)
+def fact(x):
+    if x == 1:
+        return 1
+    else:
+        return x * fact(x-1)
 
-
-def bye():
-    print("응 빠이")
-
-
-def greet(name):
-    print("안녕 " + name)
-    greet2(name)
-    print("마지막 인사... 준비중")
-    bye()
-
-
-greet("heejin")
+print(fact(5))
