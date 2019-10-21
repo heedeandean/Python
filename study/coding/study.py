@@ -1,11 +1,11 @@
-# for문을 사용하여 배열 원소들의 합 구하기.
+def quicksort(array):
+    if len(array) < 2:
+        return array
+    else:
+        pivot = array[0]
+        less = [i for i in array[1:] if i <= pivot]
+        greater = [i for i in array[1:] if i > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
 
-def sum_array(arr):
-    total = 0
 
-    for x in arr:
-        total += x
-    return total
-
-
-print(sum_array([1, 2, 3, 4]))
+print(quicksort([10, 5, 2, 3]))

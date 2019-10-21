@@ -1,6 +1,6 @@
-# for문을 사용하여 배열 원소들의 합 구하기.
+# sum 구현(for문 사용)
 
-def sum_array(arr):
+def sum(arr):
     total = 0
 
     for x in arr:
@@ -8,4 +8,4 @@ def sum_array(arr):
     return total
 
 
-print(sum_array([1, 2, 3, 4]))
+print(sum([1, 2, 3, 4]))
