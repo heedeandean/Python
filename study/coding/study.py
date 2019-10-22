@@ -1,29 +1,12 @@
-# 재귀함수 이용!
+voted = {'tom' : False, 'mike' : False}
 
-# 1. sum()
-def sum(arr):
-    if arr == []:
-        return 0
-    return arr[0] + sum(arr[1:])
-
-# 2. count()
-def count(arr):
-    if arr == []:
-        return 0
-    return 1 + count(arr[1:])
-
-
-# 3. max()
-def max(arr):
-    if len(arr) == 2:
-        return arr[0] if arr[0] > arr[1] else arr[1]
+def check_voter(name):
+    if voted.get(name):
+        print("돌려 보내세요!")
     else:
-        sub_max = max(arr[1:])
-        return arr[0] if arr[0] > sub_max else sub_max
+        voted[name] = True
+        print("투표하게 하세요.")
 
-
-# 출력
-arr = [4, 7, 10]
-print("sum :", sum(arr))
-print("count :", count(arr))
-print("max :", max(arr))
+check_voter('tom')
+check_voter('mike')
+check_voter('mike')
