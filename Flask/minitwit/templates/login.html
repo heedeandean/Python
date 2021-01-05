@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}로그인{% endblock %}
+{% block body %}
+<h2>로그인</h2>
+{% if error %}
+    <div class=error><strong>Error :</strong> {{ error }}</div>
+{% endif %}
+    <form action="" method=post>
+        <dl>
+            <dt>Username :</dt>
+            <dd>
+                <input type=text name=username size=30
+                        value="{{ request.form.username }}">
+            </dd>
+            <dt>비밀번호 :</dt>
+            <dd><input type=password name=password size=30></dd>
+        </dl>
+        <div class=actions>
+            <input type=submit value="로그인">
+        </div>
+    </form>
+{% endblock %}

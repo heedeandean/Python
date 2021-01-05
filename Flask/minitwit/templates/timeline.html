@@ -1,0 +1,57 @@
+{%extends "layout.html" %}
+{% block title %}
+{% if request.endpoint == 'public_timeline' %}
+    전체 뜬 구름
+{% elif request.endpoint == 'user_timeline' %}
+    {{ profile_user.username }}님의 뜬 구름
+{% else %}
+    My Timeline
+{% endif %}
+{% endblock %}
+{% block body %}
+<h2>{{ self.title() }}</h2>
+{% if g.user %}
+    {% if request.endpoint == 'user_timeline' %}
+        <div class=followstatus>
+            {% if g.user.user_id == profile_user.user_id %}
+            나의 페이지!
+            {% elif followed %}
+            현재 이 사용자를 팔로우하고 있습니다.
+            <a class=unfollow href="{{ url_for('unfollow_user', username=profile_user.username) }}">
+                Unfollow user</a>.
+            {% else %}
+            팔로우하지 않은 사용자입니다.
+            <a class=follow href="{{ url_for('follow_user', username=profile_user.username) }}">
+                Follow user</a>.
+            {% endif %}
+        </div>
+    {% elif request.endpoint == 'timeline' %}
+        <div class=twitbox>
+            <h3>{{ g.user.username }}님의 뜬 구름은?</h3>
+            <form action="{{ url_for('add_message') }}" method="post">
+                <p>
+                    <input type=text name=text size=60>
+                    <input type=submit value="띄우기">
+                </p>
+            </form>
+        </div>
+    {% endif %}
+{% endif %}
+    <ul class=messages>
+        {% for message in messages %}
+        <li>
+            <img src="{{ message.email|gravatar(size=48)}}">
+            <p>
+                <strong><a href="{{ url_for('user_timeline', username=message.username) }}">
+                            {{ message.username }}</a></strong>
+                {{ message.text }}
+                <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
+                {% else %}
+            </p>
+        </li>
+        <li>
+            <em>당신의 뜬 구름이 없습니다.</em>
+        {% endfor %}
+        </li>
+    </ul>
+{% endblock %}
